@@ -1,0 +1,63 @@
+<web-app>
+	<!-- 指定spring配置文件所在位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/spring.xml</param-value>
+	</context-param>
+	<!-- end 配置文件 -->
+
+	<!-- MVC 核心控制器 -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.ajax</url-pattern>
+	</servlet-mapping>
+	<!-- end MVC -->
+
+	<!-- IOC 容器初始化监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener> 
+	<!-- end IOC -->
+	<!-- 项目初始化操作监听器 -->
+	<!--  <listener>
+		<listener-class>kohgylw.erpsystem1803.listener.InitListener</listener-class>
+	</listener> -->
+	<!-- end 初始化 -->
+	
+	<!-- 记录在线人数的监听器 -->
+	<!-- <listener>
+		<listener-class>kohgylw.erpsystem1803.listener.VisitorCountLintener</listener-class>
+	</listener> -->
+	<!-- end 在线人数 -->
+
+	<!-- 判断用户身份合法性的过滤器 -->
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>com.filter.LoginFilter</filter-class>
+	</filter> 
+	 <filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<!-- end 用户身份过滤器 -->
+	
+	<!-- 欢迎页面 -->
+	<welcome-file-list>
+		<welcome-file>/login.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- end 欢迎页面 -->
+</web-app>
+

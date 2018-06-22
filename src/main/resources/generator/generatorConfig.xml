@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<!-- 这个文件，是 MyBatis Generator 的配置文件，真正的黑科技，根据数据库自动生成Bean和Mapper -->
+<generatorConfiguration>
+	<!-- 配置驱动，写你的数据库驱动位置 -->
+	<classPathEntry
+		location="C:\Users\Ltp\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 在这写上你的数据库链接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/erp?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true"
+			userId="root" password="123456" />
+		<!-- 这写上你要把数据表映射的Bean生成在哪 -->
+		<javaModelGenerator targetPackage="com.model.system"
+			targetProject="ERP" />
+		<!-- 这写上你要把查询映射的XML生成在哪 -->
+		<sqlMapGenerator targetPackage="com.mapper.system"
+			targetProject="ERP" />
+		<!-- 这写上你要把查询映射的接口生成在哪 -->
+		<javaClientGenerator targetPackage="com.dao.system"
+			targetProject="ERP" type="XMLMAPPER" />
+
+		<!-- 这一部分写你要把哪张表生成Bean，参数名浅显易懂，下面可以写多个table -->
+		<!-- 后面那一大串false的意思是是否生成增删改查的例子，一般来说可以生成 -->
+		
+		<table tableName="sys_user" domainObjectName="User"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+	</context>
+</generatorConfiguration>
