@@ -5,7 +5,7 @@ public class PostMenu {
 
     private String postId;
 
-    private String menuId;
+    private String oneMenuId;
 
     public String getPostMenuId() {
         return postMenuId;
@@ -23,11 +23,11 @@ public class PostMenu {
         this.postId = postId;
     }
 
-    public String getMenuId() {
-        return menuId;
+    public String getOneMenuId() {
+        return oneMenuId;
     }
 
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
+    public void setOneMenuId(String oneMenuId) {
+        this.oneMenuId = oneMenuId;
     }
 }

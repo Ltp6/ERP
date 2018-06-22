@@ -16,6 +16,7 @@ public class LoginController extends BaseController{
 	@RequestMapping("/checkLoginName.ajax")
 	@ResponseBody
 	public String checkLoginName(HttpServletRequest request) {
+		"a".equals("");
 		return loginService.checkLoginName(request);
 	}
 	@RequestMapping("/login.ajax")

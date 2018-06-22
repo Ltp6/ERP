@@ -61,30 +61,21 @@
 
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>系统管理</span></a>
+               
+               <c:forEach items="${oneMenu}" var="oneMenu">
+              
+                	<li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>系统管理</span></a>
                     <ul class="sub-menu-list">
+                    <c:forEach items="${authGroupPojo.auths }" var="auth">
                         <li><a href="grids.html" target="right"> Grids</a></li>
                         <li><a href="gallery.html" target="right"> Media Gallery</a></li>
                         <li><a href="calendar.html" target="right"> Calendar</a></li>
                         <li><a href="tree_view.html" target="right"> Tree View</a></li>
                         <li><a href="nestable.html" target="right"> Nestable</a></li>
+                    </c:forEach>
                     </ul>
                 </li>
-
-                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>人事管理</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="form_layouts.html" target="right"> Form Layouts</a></li>
-                        <li><a href="form_advanced_components.html" target="right"> Advanced Components</a></li>
-                        <li><a href="form_wizard.html" target="right"> Form Wizards</a></li>
-                        <li><a href="form_validation.html" target="right"> Form Validation</a></li>
-                        <li><a href="editors.html" target="right"> Editors</a></li>
-                        <li><a href="inline_editors.html" target="right"> Inline Editors</a></li>
-                        <li><a href="pickers.html" target="right">  Pickers</a></li>
-                        <li><a href="dropzone.html" target="right"> Dropzone</a></li>
-                        <li><a href="http://www.weidea.net" target="right"> More</a></li>
-                    </ul>
-                </li>
-
+			</c:forEach>
             </ul>
             <!--sidebar nav end-->
 

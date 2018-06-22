@@ -68,4 +68,9 @@
       menu_icon = #{menuIcon,jdbcType=VARCHAR}
     where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
   </update>
+  
+
+  
+  
+  
 </mapper>
