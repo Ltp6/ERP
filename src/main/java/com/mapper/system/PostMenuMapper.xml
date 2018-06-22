@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.system.PostMenuMapper">
+  <resultMap id="BaseResultMap" type="com.model.system.PostMenu">
+    <id column="post_menu_id" jdbcType="VARCHAR" property="postMenuId" />
+    <result column="post_id" jdbcType="VARCHAR" property="postId" />
+    <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    post_menu_id, post_id, menu_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_post_menu
+    where post_menu_id = #{postMenuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_post_menu
+    where post_menu_id = #{postMenuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.system.PostMenu">
+    insert into sys_post_menu (post_menu_id, post_id, menu_id
+      )
+    values (#{postMenuId,jdbcType=VARCHAR}, #{postId,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.system.PostMenu">
+    insert into sys_post_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="postMenuId != null">
+        post_menu_id,
+      </if>
+      <if test="postId != null">
+        post_id,
+      </if>
+      <if test="menuId != null">
+        menu_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="postMenuId != null">
+        #{postMenuId,jdbcType=VARCHAR},
+      </if>
+      <if test="postId != null">
+        #{postId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null">
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.PostMenu">
+    update sys_post_menu
+    <set>
+      <if test="postId != null">
+        post_id = #{postId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null">
+        menu_id = #{menuId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where post_menu_id = #{postMenuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.system.PostMenu">
+    update sys_post_menu
+    set post_id = #{postId,jdbcType=VARCHAR},
+      menu_id = #{menuId,jdbcType=VARCHAR}
+    where post_menu_id = #{postMenuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

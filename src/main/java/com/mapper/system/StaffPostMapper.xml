@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.system.StaffPostMapper">
+  <resultMap id="BaseResultMap" type="com.model.system.StaffPost">
+    <id column="sta_post_id" jdbcType="VARCHAR" property="staPostId" />
+    <result column="sta_id" jdbcType="VARCHAR" property="staId" />
+    <result column="post_id" jdbcType="VARCHAR" property="postId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sta_post_id, sta_id, post_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_staff_post
+    where sta_post_id = #{staPostId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_staff_post
+    where sta_post_id = #{staPostId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.system.StaffPost">
+    insert into sys_staff_post (sta_post_id, sta_id, post_id
+      )
+    values (#{staPostId,jdbcType=VARCHAR}, #{staId,jdbcType=VARCHAR}, #{postId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.system.StaffPost">
+    insert into sys_staff_post
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staPostId != null">
+        sta_post_id,
+      </if>
+      <if test="staId != null">
+        sta_id,
+      </if>
+      <if test="postId != null">
+        post_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staPostId != null">
+        #{staPostId,jdbcType=VARCHAR},
+      </if>
+      <if test="staId != null">
+        #{staId,jdbcType=VARCHAR},
+      </if>
+      <if test="postId != null">
+        #{postId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.StaffPost">
+    update sys_staff_post
+    <set>
+      <if test="staId != null">
+        sta_id = #{staId,jdbcType=VARCHAR},
+      </if>
+      <if test="postId != null">
+        post_id = #{postId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sta_post_id = #{staPostId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.system.StaffPost">
+    update sys_staff_post
+    set sta_id = #{staId,jdbcType=VARCHAR},
+      post_id = #{postId,jdbcType=VARCHAR}
+    where sta_post_id = #{staPostId,jdbcType=VARCHAR}
+  </update>
+</mapper>

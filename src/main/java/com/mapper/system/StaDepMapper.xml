@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.system.StaDepMapper">
+  <resultMap id="BaseResultMap" type="com.model.system.StaDep">
+    <id column="sta_dep_id" jdbcType="VARCHAR" property="staDepId" />
+    <result column="sta_id" jdbcType="VARCHAR" property="staId" />
+    <result column="dep_id" jdbcType="VARCHAR" property="depId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sta_dep_id, sta_id, dep_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sta_dep
+    where sta_dep_id = #{staDepId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_sta_dep
+    where sta_dep_id = #{staDepId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.system.StaDep">
+    insert into sys_sta_dep (sta_dep_id, sta_id, dep_id
+      )
+    values (#{staDepId,jdbcType=VARCHAR}, #{staId,jdbcType=VARCHAR}, #{depId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.system.StaDep">
+    insert into sys_sta_dep
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staDepId != null">
+        sta_dep_id,
+      </if>
+      <if test="staId != null">
+        sta_id,
+      </if>
+      <if test="depId != null">
+        dep_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staDepId != null">
+        #{staDepId,jdbcType=VARCHAR},
+      </if>
+      <if test="staId != null">
+        #{staId,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null">
+        #{depId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.StaDep">
+    update sys_sta_dep
+    <set>
+      <if test="staId != null">
+        sta_id = #{staId,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null">
+        dep_id = #{depId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sta_dep_id = #{staDepId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.system.StaDep">
+    update sys_sta_dep
+    set sta_id = #{staId,jdbcType=VARCHAR},
+      dep_id = #{depId,jdbcType=VARCHAR}
+    where sta_dep_id = #{staDepId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.system.DepPostMapper">
+  <resultMap id="BaseResultMap" type="com.model.system.DepPost">
+    <id column="dep_post_id" jdbcType="VARCHAR" property="depPostId" />
+    <result column="post_id" jdbcType="VARCHAR" property="postId" />
+    <result column="dep_id" jdbcType="VARCHAR" property="depId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dep_post_id, post_id, dep_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dep_post
+    where dep_post_id = #{depPostId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_dep_post
+    where dep_post_id = #{depPostId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.system.DepPost">
+    insert into sys_dep_post (dep_post_id, post_id, dep_id
+      )
+    values (#{depPostId,jdbcType=VARCHAR}, #{postId,jdbcType=VARCHAR}, #{depId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.system.DepPost">
+    insert into sys_dep_post
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="depPostId != null">
+        dep_post_id,
+      </if>
+      <if test="postId != null">
+        post_id,
+      </if>
+      <if test="depId != null">
+        dep_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="depPostId != null">
+        #{depPostId,jdbcType=VARCHAR},
+      </if>
+      <if test="postId != null">
+        #{postId,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null">
+        #{depId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.DepPost">
+    update sys_dep_post
+    <set>
+      <if test="postId != null">
+        post_id = #{postId,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null">
+        dep_id = #{depId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dep_post_id = #{depPostId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.system.DepPost">
+    update sys_dep_post
+    set post_id = #{postId,jdbcType=VARCHAR},
+      dep_id = #{depId,jdbcType=VARCHAR}
+    where dep_post_id = #{depPostId,jdbcType=VARCHAR}
+  </update>
+</mapper>

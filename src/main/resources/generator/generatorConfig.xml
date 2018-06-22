@@ -29,10 +29,62 @@
 		<!-- 这一部分写你要把哪张表生成Bean，参数名浅显易懂，下面可以写多个table -->
 		<!-- 后面那一大串false的意思是是否生成增删改查的例子，一般来说可以生成 -->
 		
-		<table tableName="sys_user" domainObjectName="User"
+		<!-- <table tableName="sys_user" domainObjectName="User"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table> -->
+			
+			<table tableName="sys_dep_post" domainObjectName="DepPost"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_department" domainObjectName="Department"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_one_menu" domainObjectName="OneMenu"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_one_menu_correlation" domainObjectName="OneMenuCorrelation"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_post" domainObjectName="Post"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_post_menu" domainObjectName="PostMenu"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_sta_dep" domainObjectName="StaDep"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_staff" domainObjectName="Staff"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_staff_post" domainObjectName="StaffPost"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			<table tableName="sys_two_menu" domainObjectName="TwoMenu"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+			
 
 	</context>
 </generatorConfiguration>

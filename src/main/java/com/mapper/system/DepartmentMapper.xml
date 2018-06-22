@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.system.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.model.system.Department">
+    <id column="dep_id" jdbcType="VARCHAR" property="depId" />
+    <result column="dep_name" jdbcType="VARCHAR" property="depName" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dep_id, dep_name, p_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_department
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_department
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.system.Department">
+    insert into sys_department (dep_id, dep_name, p_id
+      )
+    values (#{depId,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.system.Department">
+    insert into sys_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="depId != null">
+        dep_id,
+      </if>
+      <if test="depName != null">
+        dep_name,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="depId != null">
+        #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null">
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.Department">
+    update sys_department
+    <set>
+      <if test="depName != null">
+        dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.system.Department">
+    update sys_department
+    set dep_name = #{depName,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=VARCHAR}
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </update>
+</mapper>
