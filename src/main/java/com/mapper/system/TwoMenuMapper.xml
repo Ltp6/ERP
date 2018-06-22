@@ -2,57 +2,70 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.system.TwoMenuMapper">
   <resultMap id="BaseResultMap" type="com.model.system.TwoMenu">
-    <id column="menu_id" jdbcType="VARCHAR" property="menuId" />
-    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <id column="two_menu_id" jdbcType="VARCHAR" property="twoMenuId" />
+    <result column="two_menu_name" jdbcType="VARCHAR" property="twoMenuName" />
+    <result column="two_menu_url" jdbcType="VARCHAR" property="twoMenuUrl" />
   </resultMap>
   <sql id="Base_Column_List">
-    menu_id, menu_name
+    two_menu_id, two_menu_name, two_menu_url
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_two_menu
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    where two_menu_id = #{twoMenuId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_two_menu
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    where two_menu_id = #{twoMenuId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.model.system.TwoMenu">
-    insert into sys_two_menu (menu_id, menu_name)
-    values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR})
+    insert into sys_two_menu (two_menu_id, two_menu_name, two_menu_url
+      )
+    values (#{twoMenuId,jdbcType=VARCHAR}, #{twoMenuName,jdbcType=VARCHAR}, #{twoMenuUrl,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.model.system.TwoMenu">
     insert into sys_two_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="menuId != null">
-        menu_id,
+      <if test="twoMenuId != null">
+        two_menu_id,
       </if>
-      <if test="menuName != null">
-        menu_name,
+      <if test="twoMenuName != null">
+        two_menu_name,
+      </if>
+      <if test="twoMenuUrl != null">
+        two_menu_url,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="menuId != null">
-        #{menuId,jdbcType=VARCHAR},
+      <if test="twoMenuId != null">
+        #{twoMenuId,jdbcType=VARCHAR},
       </if>
-      <if test="menuName != null">
-        #{menuName,jdbcType=VARCHAR},
+      <if test="twoMenuName != null">
+        #{twoMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="twoMenuUrl != null">
+        #{twoMenuUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.model.system.TwoMenu">
     update sys_two_menu
     <set>
-      <if test="menuName != null">
-        menu_name = #{menuName,jdbcType=VARCHAR},
+      <if test="twoMenuName != null">
+        two_menu_name = #{twoMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="twoMenuUrl != null">
+        two_menu_url = #{twoMenuUrl,jdbcType=VARCHAR},
       </if>
     </set>
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    where two_menu_id = #{twoMenuId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.model.system.TwoMenu">
     update sys_two_menu
-    set menu_name = #{menuName,jdbcType=VARCHAR}
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    set two_menu_name = #{twoMenuName,jdbcType=VARCHAR},
+      two_menu_url = #{twoMenuUrl,jdbcType=VARCHAR}
+    where two_menu_id = #{twoMenuId,jdbcType=VARCHAR}
   </update>
 </mapper>

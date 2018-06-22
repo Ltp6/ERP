@@ -1,23 +1,33 @@
 package com.model.system;
 
 public class TwoMenu {
-    private String menuId;
+    private String twoMenuId;
 
-    private String menuName;
+    private String twoMenuName;
 
-    public String getMenuId() {
-        return menuId;
+    private String twoMenuUrl;
+
+    public String getTwoMenuId() {
+        return twoMenuId;
     }
 
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
+    public void setTwoMenuId(String twoMenuId) {
+        this.twoMenuId = twoMenuId;
     }
 
-    public String getMenuName() {
-        return menuName;
+    public String getTwoMenuName() {
+        return twoMenuName;
     }
 
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
+    public void setTwoMenuName(String twoMenuName) {
+        this.twoMenuName = twoMenuName;
+    }
+
+    public String getTwoMenuUrl() {
+        return twoMenuUrl;
+    }
+
+    public void setTwoMenuUrl(String twoMenuUrl) {
+        this.twoMenuUrl = twoMenuUrl;
     }
 }
