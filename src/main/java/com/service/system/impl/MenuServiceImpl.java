@@ -10,37 +10,42 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
-import com.dao.system.MenuMapper;
 import com.dao.system.OneMenuMapper;
+import com.dao.system.TwoMenuMapper;
 import com.model.pojo.Menu;
 import com.model.system.OneMenu;
+import com.model.system.TwoMenu;
 import com.service.system.MenuService;
-
 
 @Service
 public class MenuServiceImpl implements MenuService {
 
 	@Resource
 	private OneMenuMapper oneMenuMapper;
+	@Resource
+	private TwoMenuMapper twoMenuMapper;
 
 	@Override
-	public List<Menu> queryMenuByLoginName(HttpServletRequest request) {
-//		List<AuthGroup> groups = agm.selectAll();
-		List<OneMenu> oneMenuList = oneMenuMapper.queryAllOneMenu();
-		String loginName = (String) request.getSession().getAttribute("loginName");
-		
-		List<Menu> menuList = new ArrayList<>();
-		for (OneMenu one : oneMenuList) {
-			Menu menu = new Menu();
-			menu.setOneMenu(one);
-			Map<String, String> map = new HashMap<String, String>();
-			/*map.put("accountId", accountId);
-			map.put("authGroupId", ag.getAuthGroupId());
-			List<SystemAuth> auths = sam.selectByAccountIdAndGroupId(map);
-			agp.setAuths(auths);
-			pojos.add(agp);*/
-		}
-		return menuList;
-	}
+	public void querySelfMenuByLoginName(HttpServletRequest request) {
+		// TODO Auto-generated method stub
 
+		String loginName = (String) request.getSession().getAttribute("loginName");
+		List<OneMenu> oneMenuList = new ArrayList<>();
+		if (loginName.equals("admin")) {
+			oneMenuList = oneMenuMapper.queryAllOneMenu();
+		} else {
+			 oneMenuList = oneMenuMapper.queryOneMenuByLoginName(loginName);
+		}
+
+		List<Menu> menuList = new ArrayList<>();
+		for (OneMenu oneMenu : oneMenuList) {
+			Menu menu = new Menu();
+			menu.setOneMenu(oneMenu);
+			List<TwoMenu> twoMenuList = twoMenuMapper.queryTowMenuByLoginNameAndOneMenuId(loginName,
+					oneMenu.getOneMenuId());
+			menu.setTwoMenuList(twoMenuList);
+			menuList.add(menu);
+		}
+		request.setAttribute("menuList", menuList);
+	}
 }

@@ -19,4 +19,6 @@ public interface OneMenuMapper {
 
 	List<OneMenu> queryAllOneMenu();
 
+	List<OneMenu> queryOneMenuByLoginName(String loginName);
+
 }

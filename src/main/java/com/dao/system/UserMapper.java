@@ -1,5 +1,6 @@
 package com.dao.system;
 
+import com.model.system.Staff;
 import com.model.system.User;
 
 public interface UserMapper {
@@ -18,4 +19,5 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
 	User queryUserByLoginName(String loginName);
+
 }

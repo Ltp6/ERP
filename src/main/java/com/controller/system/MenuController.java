@@ -13,8 +13,7 @@ public class MenuController extends BaseController {
 	
 	@RequestMapping("/menu.do")
 	public String menu(HttpServletRequest request) {
-		request.setAttribute("menuList", menuService.queryMenuByLoginName(request));
-		
+		menuService.querySelfMenuByLoginName(request);
 		return "/view/home/index.jsp";
 	}
 

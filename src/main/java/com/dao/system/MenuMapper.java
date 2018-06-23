@@ -6,6 +6,5 @@ import com.model.pojo.Menu;
 
 public interface MenuMapper {
 
-	List<Menu> queryMenuByLoginName(String loginName);
 
 }

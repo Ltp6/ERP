@@ -105,7 +105,7 @@ $("#login").click(function(){
 			switch (result) {
 			case "SUCCESS":
 				$("#hint").text("")
-				window.location.href = "view/home/index.jsp";
+				window.location.href = "menuController/menu.do";
 				break;
 			case "FAIL":
 				$("#hint").text("密码错误，请重新输入")

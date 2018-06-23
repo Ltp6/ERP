@@ -150,4 +150,12 @@
       sta_idcard = #{staIdcard,jdbcType=VARCHAR}
     where sta_id = #{staId,jdbcType=VARCHAR}
   </update>
+  <select id="qureyStaffByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_staff
+    where  login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  
+  
 </mapper>

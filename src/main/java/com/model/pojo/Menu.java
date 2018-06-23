@@ -8,7 +8,7 @@ import com.model.system.TwoMenu;
 public class Menu {
 
 	private OneMenu oneMenu;
-	private List<TwoMenu> menu;
+	private List<TwoMenu> twoMenuList;
 
 	public OneMenu getOneMenu() {
 		return oneMenu;
@@ -18,12 +18,11 @@ public class Menu {
 		this.oneMenu = oneMenu;
 	}
 
-	public List<TwoMenu> getMenu() {
-		return menu;
+	public List<TwoMenu> getTwoMenuList() {
+		return twoMenuList;
 	}
 
-	public void setMenu(List<TwoMenu> menu) {
-		this.menu = menu;
+	public void setTwoMenuList(List<TwoMenu> twoMenuList) {
+		this.twoMenuList = twoMenuList;
 	}
-
 }

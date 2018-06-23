@@ -14,4 +14,6 @@ public interface StaffMapper {
     int updateByPrimaryKeySelective(Staff record);
 
     int updateByPrimaryKey(Staff record);
+
+	Staff qureyStaffByLoginName(String loginName);
 }

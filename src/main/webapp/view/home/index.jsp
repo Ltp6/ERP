@@ -23,7 +23,7 @@
  
 </head>
 
-<body class="sticky-header" style="overflow:-Scroll;overflow-y:hidden">
+<body class="sticky-header" style="overflow:-Scroll;overflow-y:hidden;">
 
 <section>
     <!-- left side start-->
@@ -46,7 +46,7 @@
                 <div class="media logged-user">
                     <img alt="" src="images/photos/user-avatar.png" class="media-object">
                     <div class="media-body">
-                        <h4><a href="#">admin</a></h4>
+                        <h4><a href="#" class="name"></a></h4>
                         <span>"还没有想好..."</span>
                     </div>
                 </div>
@@ -62,13 +62,13 @@
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                
-               <c:forEach items="${menuList}" var="menu">
+               <c:forEach items="${menuList}" var="menuList">
               
-                	<li class="menu-list"><a href=""><i class="fa ${menu.menuIcon }"></i> <span>${menu.oneMenuName}</span></a>
+                	<li class="menu-list"><a href=""><i class="fa ${menuList.oneMenu.menuIcon }"></i> <span>${menuList.oneMenu.oneMenuName}</span></a>
                     <ul class="sub-menu-list">
-                    <%-- <c:forEach items="${authGroupPojo.auths }" var="auth"> --%>
-                        <li><a href="${menu.twoMenuUrl}" target="right"> ${menu.twoMenuName}</a></li>
-                    <%-- </c:forEach> --%>
+                    <c:forEach items="${menuList.twoMenuList}" var="twoMenu"> 
+                        <li><a href="${twoMenu.twoMenuUrl}" target="right"> ${twoMenu.twoMenuName}</a></li>
+                    </c:forEach> 
                     </ul>
                 </li>
 			</c:forEach>
@@ -112,9 +112,7 @@
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="images/photos/user-avatar.png" alt="" />
-                            admin
-                            <span class="caret"></span>
+                            <img src="images/photos/user-avatar.png" alt="" /><span class="name"></span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>  个人简介</a></li>
@@ -130,7 +128,7 @@
         <!-- header section end-->
         
         <!-- page heading end-->
-      <iframe src="menuController/menu.do" scrolling="yes" frameborder="0" name="right"></iframe>
+      <iframe id="iframe" src="" scrolling="yes" frameborder="0" name="right"></iframe>
         	
         
         
@@ -152,28 +150,41 @@
 
 <script type="text/javascript">
 
-/* $(function(){
+$(function(){
 	$.ajax({
-		url:'indexController/getAccountLoginId.ajax',
+		url:'indexController/getStaName.ajax',
 		type:'POST',
 		data:{
 			
 		},
 		dataType:'text',
 		success:function(result){
-			if(result=="ERROR"){
-				$("#accountLoginId").text("无法获取");
+			if(result !=null&&result !="FAIL"){
+				$(".name").text(result);
+				if(result=="admin"){
+					$("#iframe").attr("src","view/home/admin-info.jsp")
+				}else{
+					$("#iframe").attr("src","view/home/info.jsp")
+				}
 			}else{
-				$("#accountLoginId").text("["+result+"]");
+				$(".name").text("正在获取。。。");
 			}
 		},
 		error:function(){
-			$("#accountLoginId").text("无法获取");
+			$(".name").text("无法获取");
 		}
 	});
-}); */
+}); 
 
 
+/* 管理员与其他人跳转主页不一致 */
+$(function(){
+	
+	
+	
+	
+	
+})
 
 
 
