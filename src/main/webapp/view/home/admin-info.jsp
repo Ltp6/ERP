@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="sticky-header" style="background-color: #EFF0F4">
+<body class="sticky-header" style="background-color: #EFF0F4" onload="showtime()">
 
 	<section> <!-- main content start-->
 	<div class="main-content">
@@ -51,21 +51,28 @@
 							<table class="display table table-bordered table-striped"
 								id="dynamic-table">
 									<tr>
+										<th style="text-align: center;width: 50%">当前时间</th>
+										<td style="text-align: center;width: 50%" id="date"></td>
+									</tr>
+									<tr>
 										<th style="text-align: center;">账号名</th>
-										<td style="text-align: center;">admin</td>
+										<td  id="loginName" style="text-align: center;">admin</td>
 									</tr>
-									<tr class="gradeX">
+									<tr>
 										<th style="text-align: center;">姓名</th>
-										<td style="text-align: center;">admin</td>
+										<td id="name" style="text-align: center;">admin</td>
 									</tr>
-									<tr class="gradeC">
+									<tr>
 										<th style="text-align: center;">登录时间</th>
-										<td style="text-align: center;">admin</td>
+										<td style="text-align: center;">暂时没有写</td>
 									</tr>
-									
-									<tr class="gradeC">
+									<tr>
+										<th style="text-align: center;">浏览器信息</th>
+										<td id="browserVersion" style="text-align: center;"></td>
+									</tr>
+									<tr>
 										<th style="text-align: center;">IP地址</th>
-										<td style="text-align: center;">admin</td>
+										<td id="ip" style="text-align: center;"></td>
 									</tr>
 								
 							</table>
@@ -89,36 +96,31 @@
 							<table class="display table table-bordered table-striped"
 								id="dynamic-table">
 								<tr>
-										<th style="text-align: center;">本系统访问路劲</th>
-										<td style="text-align: center;">admin</td>
+										<th style="text-align: center;width: 50%">本系统访问路劲</th>
+										<td style="text-align: center;width: 50%"><%=basePath %></td>
 									</tr>
 									<tr class="gradeX">
 										<th style="text-align: center;">服务器名称</th>
-										<td style="text-align: center;">admin</td>
+										<td id="serverName" style="text-align: center;"></td>
 									</tr>
 									<tr class="gradeC">
 										<th style="text-align: center;">HTML版本</th>
-										<td style="text-align: center;">admin</td>
+										<td style="text-align: center;">HTML5</td>
 									</tr>
 									
 									<tr class="gradeC">
 										<th style="text-align: center;">当前在线人数</th>
-										<td style="text-align: center;">admin</td>
+										<td id="visitorCount" style="text-align: center;"></td>
 									</tr>
 									
 									<tr class="gradeC">
 										<th style="text-align: center;">登录超时时间</th>
-										<td style="text-align: center;">....</td>
-									</tr>
-									
-									<tr class="gradeC">
-										<th style="text-align: center;">当前在线人数</th>
-										<td style="text-align: center;">......</td>
+										<td id="sessionTimeOut" style="text-align: center;"></td>
 									</tr>
 									
 									<tr class="gradeC">
 										<th style="text-align: center;">服务器当前时间</th>
-										<td style="text-align: center;">......</td>
+										<td id="serverTime" style="text-align: center;"></td>
 									</tr>
 							</table>
 						</div>
@@ -148,7 +150,148 @@
 
 	<!--common scripts for all pages-->
 	<script src="js/scripts.js"></script>
+	<script type="text/javascript" src="js/time.js"></script>
+	<script type="text/javascript">
+	//获取浏览器信息
+	function showBrowserVersion() {
+		var userAgent = window.navigator.userAgent;
+		$("#browserVersion").text(userAgent);
+	}
+	
+	
+	$(function(){
+		
+		showBrowserVersion();
+		
+		//获取姓名信息
+		$.ajax({
+			url:'indexController/getStaName.ajax',
+			type:'POST',
+			data:{
+				
+			},
+			dataType:'text',
+			success:function(result){
+				if(result !=null&&result !="FAIL"){
+					$("#name").text(result);
+				}else{
+					$("#name").text("正在获取。。。");
+				}
+			},
+			error:function(){
+				$("#name").text("无法获取");
+			}
+		});
+		
+		//获取账户信息
+		$.ajax({
+			url:'indexController/getUserName.ajax',
+			type:'POST',
+			data:{
+				
+			},
+			dataType:'text',
+			success:function(result){
+				if(result !=null){
+					$("#loginName").text(result);
+				}else{
+					$(".name").text("正在获取。。。");
+				}
+			},
+			error:function(){
+				$(".name").text("无法获取");
+			}
+		});
+		
+		
+		//获取IP地址信息
+		$.ajax({
+			url:'indexController/getServerIP.ajax',
+			type:'POST',
+			data:{
+				
+			},
+			dataType:'text',
+			success:function(result){
+					$("#ip").text(result);
+			},
+			error:function(){
+				$("#ip").text("无法获取");
+			}
+		});
+		//获取服务器名称信息
+		$.ajax({
+			url:'indexController/getServerName.ajax',
+			type:'POST',
+			data:{
+				
+			},
+			dataType:'text',
+			success:function(result){
+					$("#serverName").text(result);
+			},
+			error:function(){
+				$("#serverName").text("无法获取");
+			}
+		});
+		//获取访问人数
+		setInterval(function()
+		 {
+		$.ajax({
+			url:'indexController/getVisitorCount.ajax',
+			type:'POST',
+			data:{
+				
+			},
+			dataType:'text',
+			success:function(result){
+					$("#visitorCount").text(result);
+			},
+			error:function(){
+				$("#visitorCount").text("无法获取");
+			}
+		});
+		 },5000);
+		//获取登录超时时间
+		$.ajax({
+			url:'indexController/getSessionTimeOut.ajax',
+			type:'POST',
+			data:{
+				
+			},
+			dataType:'text',
+			success:function(result){
+					$("#sessionTimeOut").text(result+"min");
+			},
+			error:function(){
+				$("#sessionTimeOut").text("无法获取");
+			}
+		});
+		
+		
+		//获取服务器当前时间
+		setInterval(function()
+		 {
+		$.ajax({
+			url:'indexController/getServerTime.ajax',
+			type:'POST',
+			data:{
+				
+			},
+			dataType:'text',
+			success:function(result){
+					$("#serverTime").text(result);
+			},
+			error:function(){
+				$("#serverTime").text("无法获取");
+			}
+		});
+	},3000);
+		
+		
+	}); 
 
+	</script>
 </body>
 
 </html>
