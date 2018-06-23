@@ -17,5 +17,6 @@ public interface OneMenuMapper {
 
     int updateByPrimaryKey(OneMenu record);
 
-	List<OneMenu> queryOneMenuByLoginName(String loginName);
+	List<OneMenu> queryAllOneMenu();
+
 }

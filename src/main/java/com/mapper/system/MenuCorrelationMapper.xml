@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.system.OneMenuCorrelationMapper">
-  <resultMap id="BaseResultMap" type="com.model.system.OneMenuCorrelation">
+<mapper namespace="com.dao.system.MenuCorrelationMapper">
+  <resultMap id="BaseResultMap" type="com.model.system.MenuCorrelation">
     <id column="menu_cor_id" jdbcType="VARCHAR" property="menuCorId" />
     <result column="one_menu_id" jdbcType="VARCHAR" property="oneMenuId" />
-    <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
+    <result column="two_menu_id" jdbcType="VARCHAR" property="twoMenuId" />
   </resultMap>
   <sql id="Base_Column_List">
-    menu_cor_id, one_menu_id, menu_id
+    menu_cor_id, one_menu_id, two_menu_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_one_menu_correlation
+    from sys_menu_correlation
     where menu_cor_id = #{menuCorId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_one_menu_correlation
+    delete from sys_menu_correlation
     where menu_cor_id = #{menuCorId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.model.system.OneMenuCorrelation">
-    insert into sys_one_menu_correlation (menu_cor_id, one_menu_id, menu_id
+  <insert id="insert" parameterType="com.model.system.MenuCorrelation">
+    insert into sys_menu_correlation (menu_cor_id, one_menu_id, two_menu_id
       )
-    values (#{menuCorId,jdbcType=VARCHAR}, #{oneMenuId,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}
+    values (#{menuCorId,jdbcType=VARCHAR}, #{oneMenuId,jdbcType=VARCHAR}, #{twoMenuId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.model.system.OneMenuCorrelation">
-    insert into sys_one_menu_correlation
+  <insert id="insertSelective" parameterType="com.model.system.MenuCorrelation">
+    insert into sys_menu_correlation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="menuCorId != null">
         menu_cor_id,
@@ -34,8 +34,8 @@
       <if test="oneMenuId != null">
         one_menu_id,
       </if>
-      <if test="menuId != null">
-        menu_id,
+      <if test="twoMenuId != null">
+        two_menu_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -45,27 +45,27 @@
       <if test="oneMenuId != null">
         #{oneMenuId,jdbcType=VARCHAR},
       </if>
-      <if test="menuId != null">
-        #{menuId,jdbcType=VARCHAR},
+      <if test="twoMenuId != null">
+        #{twoMenuId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.OneMenuCorrelation">
-    update sys_one_menu_correlation
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.MenuCorrelation">
+    update sys_menu_correlation
     <set>
       <if test="oneMenuId != null">
         one_menu_id = #{oneMenuId,jdbcType=VARCHAR},
       </if>
-      <if test="menuId != null">
-        menu_id = #{menuId,jdbcType=VARCHAR},
+      <if test="twoMenuId != null">
+        two_menu_id = #{twoMenuId,jdbcType=VARCHAR},
       </if>
     </set>
     where menu_cor_id = #{menuCorId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.model.system.OneMenuCorrelation">
-    update sys_one_menu_correlation
+  <update id="updateByPrimaryKey" parameterType="com.model.system.MenuCorrelation">
+    update sys_menu_correlation
     set one_menu_id = #{oneMenuId,jdbcType=VARCHAR},
-      menu_id = #{menuId,jdbcType=VARCHAR}
+      two_menu_id = #{twoMenuId,jdbcType=VARCHAR}
     where menu_cor_id = #{menuCorId,jdbcType=VARCHAR}
   </update>
 </mapper>

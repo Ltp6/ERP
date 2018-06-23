@@ -62,17 +62,13 @@
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                
-               <c:forEach items="${oneMenu}" var="oneMenu">
+               <c:forEach items="${menuList}" var="menu">
               
-                	<li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>系统管理</span></a>
+                	<li class="menu-list"><a href=""><i class="fa ${menu.menuIcon }"></i> <span>${menu.oneMenuName}</span></a>
                     <ul class="sub-menu-list">
-                    <c:forEach items="${authGroupPojo.auths }" var="auth">
-                        <li><a href="grids.html" target="right"> Grids</a></li>
-                        <li><a href="gallery.html" target="right"> Media Gallery</a></li>
-                        <li><a href="calendar.html" target="right"> Calendar</a></li>
-                        <li><a href="tree_view.html" target="right"> Tree View</a></li>
-                        <li><a href="nestable.html" target="right"> Nestable</a></li>
-                    </c:forEach>
+                    <%-- <c:forEach items="${authGroupPojo.auths }" var="auth"> --%>
+                        <li><a href="${menu.twoMenuUrl}" target="right"> ${menu.twoMenuName}</a></li>
+                    <%-- </c:forEach> --%>
                     </ul>
                 </li>
 			</c:forEach>
@@ -134,10 +130,7 @@
         <!-- header section end-->
         
         <!-- page heading end-->
-      <iframe src="view/home/info.jsp" scrolling="yes" frameborder="0" name="right"></iframe>
-		    <!--<div class="admin">
-				  <iframe scrolling="auto" rameborder="0" src="test.html" name="right" width="100%" height="100%"></iframe>
-				</div>-->
+      <iframe src="menuController/menu.do" scrolling="yes" frameborder="0" name="right"></iframe>
         	
         
         
@@ -156,6 +149,36 @@
 
 <!--common scripts for all pages-->
 <script src="js/scripts.js"></script>
+
+<script type="text/javascript">
+
+/* $(function(){
+	$.ajax({
+		url:'indexController/getAccountLoginId.ajax',
+		type:'POST',
+		data:{
+			
+		},
+		dataType:'text',
+		success:function(result){
+			if(result=="ERROR"){
+				$("#accountLoginId").text("无法获取");
+			}else{
+				$("#accountLoginId").text("["+result+"]");
+			}
+		},
+		error:function(){
+			$("#accountLoginId").text("无法获取");
+		}
+	});
+}); */
+
+
+
+
+
+</script>
+
 
 </body>
 </html>

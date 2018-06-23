@@ -68,7 +68,9 @@
       menu_icon = #{menuIcon,jdbcType=VARCHAR}
     where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
   </update>
-  
+  <select id="queryAllOneMenu"  resultMap="BaseResultMap">
+    select  * from sys_one_menu
+  </select>
 
   
   
