@@ -156,6 +156,10 @@
     from sys_staff
     where  login_name = #{loginName,jdbcType=VARCHAR}
   </select>
-  
+  <select id="queryStaLoginName" resultMap="BaseResultMap">
+    select 
+    login_name
+    from sys_staff
+  </select>
   
 </mapper>

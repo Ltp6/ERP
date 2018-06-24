@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import com.service.system.LoginService;
 import com.service.system.MenuService;
+import com.service.system.UserService;
 import com.service.system.indexService;
 
 public class BaseController {
@@ -13,4 +14,6 @@ public class BaseController {
 	public MenuService menuService;
 	@Resource
 	public indexService indexrService;
+	@Resource
+	public UserService userService;
 }

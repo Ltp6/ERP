@@ -1,5 +1,7 @@
 package com.dao.system;
 
+import java.util.List;
+
 import com.model.system.Staff;
 
 public interface StaffMapper {
@@ -16,4 +18,6 @@ public interface StaffMapper {
     int updateByPrimaryKey(Staff record);
 
 	Staff qureyStaffByLoginName(String loginName);
+
+	List<Staff> queryStaLoginName();
 }
