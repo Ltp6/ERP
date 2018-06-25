@@ -1,5 +1,6 @@
 package com.dao.system;
 
+import com.model.system.DepPost;
 import com.model.system.StaffPost;
 
 public interface StaffPostMapper {
@@ -14,4 +15,9 @@ public interface StaffPostMapper {
     int updateByPrimaryKeySelective(StaffPost record);
 
     int updateByPrimaryKey(StaffPost record);
+
+	int deleteOldStaffInfo(String staId);
+
+	DepPost queryStaffInfo(String staId);
+
 }

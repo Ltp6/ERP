@@ -1,5 +1,6 @@
 package com.dao.system;
 
+
 import com.model.system.Department;
 
 public interface DepartmentMapper {
@@ -14,4 +15,5 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
 }

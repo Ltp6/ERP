@@ -68,4 +68,8 @@
       post_id = #{postId,jdbcType=VARCHAR}
     where sta_post_id = #{staPostId,jdbcType=VARCHAR}
   </update>
+   <delete id="deleteOldStaffInfo" parameterType="java.lang.String">
+    delete from sys_staff_post
+    where sta_id = #{staId,jdbcType=VARCHAR}
+  </delete>
 </mapper>
