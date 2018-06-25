@@ -135,18 +135,16 @@
     from sys_user
     where login_name = #{loginName,jdbcType=VARCHAR}
   </select>
- <!--  <select id="qureyAllUser" resultMap="BaseResultMap">
+	 <select id="qureyAllUser" resultMap="BaseResultMap">
 		SELECT * FROM sys_user where login_name like #{search,jdbcType=VARCHAR} limit #{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
 	</select>
 
 	<select id="getTotalNum" resultType="java.lang.Integer">
 		SELECT count(*) FROM sys_user where login_name like #{size,jdbcType=VARCHAR}
-	</select> -->
-	
-	 <select id="queryAllUserTest"  resultMap="ResultMapWithBLOBs">
-	    select 
-	   *
-	    from sys_user
-  	</select>
-  
+	</select>
+	 <update id="resetPwdByUserId">
+    update sys_user
+    set  password = #{1}
+    where user_id = #{0}
+  </update>
 </mapper>

@@ -13,101 +13,85 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>增加用户</title>
-<link rel="stylesheet" href="X-admin/css/font.css">
-<link rel="stylesheet" href="X-admin/css/xadmin.css">
-
+<link href="css/style.css" rel="stylesheet">
+<link href="css/style-responsive.css" rel="stylesheet">
 
 
 </head>
 
-<body>
-	<div class="x-body">
-		<form class="layui-form">
-			<div class="layui-form-item">
-				<label for="username" class="layui-form-label"> 登录名 </label>
-				<div class="layui-input-inline">
-					<select id="loginName" name="loginName">
+<body class="sticky-header" style="background-color: #EFF0F4" >
 
-					</select>
+	<section> <!-- main content start-->
+	<div class="main-content">
+		<!-- page heading start-->
+		<div class="page-heading">
+			<h3>新增用户</h3>
+			<ul class="breadcrumb">
+				<li>用户管理</li>
+				<li class="active">新增用户</li>
+			</ul>
+		</div>
+		<!-- page heading end-->
+		<!--body wrapper start-->
+		<div class="wrapper">
 
+			<div class="row">
+				<div class="col-lg-12">
+					<section class="panel"> <header class="panel-heading">
+					<span class="fa fa-plus"></span>&nbsp;增加用户 
+					<div style="display: inline;margin-left: 40%">
+						<span style="visibility: hidden;">占位置啊</span><span id="hint" style="color: red;"></span>
+					</div>
+					</header>
+					
+					<div class="panel-body">
+						<div class="form">
+							<form class="cmxform form-horizontal adminex-form"
+								id="signupForm" method="get" action="userController/addUser.do">
+								<div class="form-group ">
+									<label for="firstname" class="control-label col-md-2">用户名</label>
+									<div class="col-md-10">
+
+										<select class="form-control m-bot15" id="loginName" name="loginName">
+											
+										</select>
+
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-md-2">邮箱</label>
+									<div class="col-md-10">
+										<input class=" form-control" id="userEmail" name="userEmail"
+											type="text" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-md-offset-2 col-md-10">
+										<button id="submit" class="btn btn-info" type="submit"><span class="fa fa-check-square-o"></span>&nbsp;提交</button>
+										<button id="cancel" class="btn btn-danger" type="button" ><span class="fa fa-undo"></span>&nbsp;返回</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					</section>
 				</div>
 			</div>
-			<div class="layui-form-item">
-				<label for="L_email" class="layui-form-label"> 邮箱 </label>
-				<div class="layui-input-inline">
-					<input type="text" id="L_email" name="email" required=""
-						lay-verify="email" autocomplete="off" class="layui-input">
-				</div>
-				<div class="layui-form-mid layui-word-aux">
-					<span class="x-red">*</span>
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="L_pass" class="layui-form-label"> <span
-					class="x-red">*</span>密码
-				</label>
-				<div class="layui-input-inline">
-					<input type="password" id="L_pass" name="pass" required=""
-						lay-verify="pass" autocomplete="off" class="layui-input">
-				</div>
-				<div class="layui-form-mid layui-word-aux">6到16个字符</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="L_repass" class="layui-form-label"> <span
-					class="x-red">*</span>确认密码
-				</label>
-				<div class="layui-input-inline">
-					<input type="password" id="L_repass" name="repass" required=""
-						lay-verify="repass" autocomplete="off" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="L_repass" class="layui-form-label"> </label>
-				<button class="layui-btn" lay-filter="add" lay-submit="">
-					增加</button>
-			</div>
-		</form>
+		</div>
+		<!--body wrapper end-->
+
 	</div>
-	<script type="text/javascript" src="X-admin/lib/layui/layui.js"
-		charset="utf-8"></script>
-	<script type="text/javascript" src="X-admin/js/xadmin.js"></script>
-	<script>
-		layui.use([ 'form', 'layer' ], function() {
-			$ = layui.jquery;
-			var form = layui.form, layer = layui.layer;
+	<!-- main content end--> </section>
 
-			//自定义验证规则
-			form.verify({
-				nikename : function(value) {
-					if (value.length < 5) {
-						return '昵称至少得5个字符啊';
-					}
-				},
-				pass : [ /(.+){6,12}$/, '密码必须6到12位' ],
-				repass : function(value) {
-					if ($('#L_pass').val() != $('#L_repass').val()) {
-						return '两次密码不一致';
-					}
-				}
-			});
+	<!-- Placed js at the end of the document so the pages load faster -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/modernizr.min.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
 
-			//监听提交
-			form.on('submit(add)', function(data) {
-				console.log(data);
-				//发异步，把数据提交给php
-				layer.alert("增加成功", {
-					icon : 6
-				}, function() {
-					// 获得frame索引
-					var index = parent.layer.getFrameIndex(window.name);
-					//关闭当前frame
-					parent.layer.close(index);
-				});
-				return false;
-			});
-
-		});
-	</script>
 	<script type="text/javascript">
 		$(function() {
 			$.ajax({
@@ -115,16 +99,15 @@
 				type : "POST",
 				datatype : "text",
 				data : {
-
+					
 				},
 				success : function(result) {
 					var loginNameList = eval("(" + result + ")");
 					$("#loginName").html("---请选择工号---");
 					for (var i = 0; i < loginNameList.length; i++) {
 						$("#loginName").append(
-								" <option value='"+loginNameList[i].loginName+"'>"
-										+ loginNameList[i].loginName
-										+ "</option>");
+								" <option value='"+loginNameList[i]+"'>"
+										+ loginNameList[i] + "</option>");
 					}
 
 				},
@@ -132,6 +115,21 @@
 
 				}
 			});
+		});
+		$("#userEmail").keyup(function(){
+			
+			var userEmail=$("#userEmail").val();
+			var str = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+			if(userEmail.match(str)) {
+				$("#hint").text("");
+				$("#submit").attr("disabled",false);
+			} else {
+				$("#submit").attr("disabled", true); 
+				$("#hint").text("电子邮件地址不合法,请重新输入");
+			}
+		});
+		$("#cancel").click(function(){
+			window.location.href="view/user/user-list.jsp";
 		});
 	</script>
 

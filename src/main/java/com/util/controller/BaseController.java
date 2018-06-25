@@ -1,6 +1,13 @@
 package com.util.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
+
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 import com.service.system.LoginService;
 import com.service.system.MenuService;
@@ -16,4 +23,9 @@ public class BaseController {
 	public indexService indexrService;
 	@Resource
 	public UserService userService;
+	@InitBinder
+	public void initBinder(ServletRequestDataBinder servletRequestDataBinder) {
+		servletRequestDataBinder.registerCustomEditor(Date.class,
+				new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), true));
+	}
 }

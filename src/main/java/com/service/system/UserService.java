@@ -2,16 +2,24 @@ package com.service.system;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.model.system.User;
+
 public interface UserService {
 
-	void addUser(HttpServletRequest request);
+	String addUser(HttpServletRequest request);
 
 	String queryAllUser(HttpServletRequest request);
 
+	String queryStaLoginName(HttpServletRequest request);
+
 	String getAllPage(HttpServletRequest request);
 
-	void queryAllUserTest(HttpServletRequest request);
+	void resetPwdByUserId(HttpServletRequest request);
 
-	String queryStaLoginName(HttpServletRequest request);
+	void updatePrepareUserByUserId(HttpServletRequest request);
+
+	void updateUserByUserId(HttpServletRequest request, User user);
+
+	void deleteUserByUserId(HttpServletRequest request);
 
 }

@@ -3,10 +3,8 @@
 <mapper namespace="com.dao.system.OneMenuMapper">
 	<resultMap id="BaseResultMap" type="com.model.system.OneMenu">
 		<id column="one_menu_id" jdbcType="VARCHAR" property="oneMenuId" />
-		<result column="one_menu_name" jdbcType="VARCHAR"
-			property="oneMenuName" />
-		<result column="menu_icon" jdbcType="VARCHAR"
-			property="menuIcon" />
+		<result column="one_menu_name" jdbcType="VARCHAR" property="oneMenuName" />
+		<result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		one_menu_id, one_menu_name, menu_icon

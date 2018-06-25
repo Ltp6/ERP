@@ -13,7 +13,7 @@
 <base href="<%=basePath%>" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户列表</title>
+<title>菜单列表</title>
 <!--dynamic table-->
 <link href="js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
 <link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
@@ -30,10 +30,10 @@
 	<div class="main-content">
 	<!-- page heading start-->
 	<div class="page-heading">
-					<h3>用户列表</h3>
+					<h3>菜单列表</h3>
 					<ul class="breadcrumb">
-							<li>用户管理</li>
-						<li class="active"> 用户列表 </li>
+							<li>菜单管理</li>
+						<li class="active"> 菜单列表 </li>
 					</ul>
 				</div>
 				<!-- page heading end-->
@@ -45,9 +45,9 @@
 					<section class="panel"> 
 					<header class="panel-heading">
 					<span class="fa fa-external-link"></span> 
-					&nbsp;管理用户
+					&nbsp;菜单列表
 					 <span class="pull-right"> 
-						<a href="view/user/user-add.jsp" class="btn btn-success" style="margin-top: -5px"><span class="fa fa-plus"></span>&nbsp;增加用户</a>
+						<a href="view/user/user-add.jsp" class="btn btn-success" style="margin-top: -5px"><span class="fa fa-plus"></span>&nbsp;增加菜单</a>
 					</span>	
 					</header>
 					<center>
@@ -62,14 +62,13 @@
 								<thead>
 									<tr>
 										<th style="text-align: center;">编号</th>
-										<th style="text-align: center;">登录名</th>
-										<th style="text-align: center;">邮箱</th>
-										<th style="text-align: center;">用户状态</th>
-										<th style="text-align: center;">创建时间</th>
+										<th style="text-align: center;">二级菜单名称</th>
+										<th style="text-align: center;">请求路径</th>
+										<th style="text-align: center;">隶属于</th>
 										<th style="text-align: center;">操作</th>
 									</tr>
 								</thead>
-								<tbody id="usertable">
+								<tbody id="menutable">
 								
 
 								</tbody>
@@ -106,7 +105,7 @@
 	$(function() {
 		search=$("#search").val();
 		$.ajax({
-			url : 'userController/getAllPage.ajax',
+			url : 'menuController/getAllMenuPage.ajax',
 			type : 'POST',
 			dataType : 'text',
 			data : {
@@ -146,7 +145,7 @@
 	function showpage(n) {
 		
 		$.ajax({
-			url : 'userController/queryAllUser.ajax',
+			url : 'menuController/queryAllMenu.ajax',
 			type : 'POST',
 			data : {
 				n : n,
@@ -155,16 +154,15 @@
 			dataType : 'text',
 			success : function(result) {
 				var user = eval("(" + result + ")");
-				$("#usertable").html("");
+				$("#menutable").html("");
 				var i = 1;
 				$.each(user, function(n, val) {
 					
-					$("#usertable").append(
-						"<tr ><td>"+i+"</td><td>"+val.loginName+"</td><td>"+val.userEmail+
-						"</td><td>"+val.userStatus+"</td><td>"+val.userCreatTime+
-						"</td><td><a class='btn btn-warning' type='button' href='userController/resetPwd.do?userId="+val.userId+
+					$("#menutable").append(
+						"<tr ><td>"+i+"</td><td>"+val.twoMenuName+"</td><td>"+val.twoMenuUrl+
+						"</td><td>"+val.oneMenuName+"</td><td><a class='btn btn-warning' type='button' href='userController/resetPwd.do?userId="+val.userId+
 								"'><span class='fa fa-repeat'></span>&nbsp;重置密码</a><a class='btn btn-info' type='button' href='userController/updatePrepareUser.do?userId="+val.userId+
-								"'><span class='fa fa-edit'></span>&nbsp;编辑</a><a class='btn btn-danger' onclick='return confirm('确定删除吗？');' type='button' href='userController/deleteUser.do?userId="+val.userId+
+								"'><span class='fa fa-edit'></span>&nbsp;编辑</a><a class='btn btn-danger' type='button' href='userController/deleteUser.do?userId="+val.userId+
 										"'><span class='fa fa-trash-o'></span>&nbsp;删除</a></td></tr>"); 
 				i++;
 				
