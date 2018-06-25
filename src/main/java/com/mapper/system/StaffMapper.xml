@@ -1,153 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.system.StaffMapper">
-  <resultMap id="BaseResultMap" type="com.model.system.Staff">
-    <id column="sta_id" jdbcType="VARCHAR" property="staId" />
-    <result column="sta_name" jdbcType="VARCHAR" property="staName" />
-    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
-    <result column="sta_tel" jdbcType="VARCHAR" property="staTel" />
-    <result column="sta_intime" jdbcType="TIMESTAMP" property="staIntime" />
-    <result column="sta_sex" jdbcType="VARCHAR" property="staSex" />
-    <result column="sta_status" jdbcType="VARCHAR" property="staStatus" />
-    <result column="sta_address" jdbcType="VARCHAR" property="staAddress" />
-    <result column="sta_edu" jdbcType="VARCHAR" property="staEdu" />
-    <result column="sta_idcard" jdbcType="VARCHAR" property="staIdcard" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    sta_id, sta_name, login_name, sta_tel, sta_intime, sta_sex, sta_status, sta_address, 
-    sta_edu, sta_idcard
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_staff
-    where sta_id = #{staId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_staff
-    where sta_id = #{staId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.model.system.Staff">
-    insert into sys_staff (sta_id, sta_name, login_name, 
-      sta_tel, sta_intime, sta_sex, 
-      sta_status, sta_address, sta_edu, 
-      sta_idcard)
-    values (#{staId,jdbcType=VARCHAR}, #{staName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
-      #{staTel,jdbcType=VARCHAR}, #{staIntime,jdbcType=TIMESTAMP}, #{staSex,jdbcType=VARCHAR}, 
-      #{staStatus,jdbcType=VARCHAR}, #{staAddress,jdbcType=VARCHAR}, #{staEdu,jdbcType=VARCHAR}, 
-      #{staIdcard,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.model.system.Staff">
-    insert into sys_staff
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="staId != null">
-        sta_id,
-      </if>
-      <if test="staName != null">
-        sta_name,
-      </if>
-      <if test="loginName != null">
-        login_name,
-      </if>
-      <if test="staTel != null">
-        sta_tel,
-      </if>
-      <if test="staIntime != null">
-        sta_intime,
-      </if>
-      <if test="staSex != null">
-        sta_sex,
-      </if>
-      <if test="staStatus != null">
-        sta_status,
-      </if>
-      <if test="staAddress != null">
-        sta_address,
-      </if>
-      <if test="staEdu != null">
-        sta_edu,
-      </if>
-      <if test="staIdcard != null">
-        sta_idcard,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="staId != null">
-        #{staId,jdbcType=VARCHAR},
-      </if>
-      <if test="staName != null">
-        #{staName,jdbcType=VARCHAR},
-      </if>
-      <if test="loginName != null">
-        #{loginName,jdbcType=VARCHAR},
-      </if>
-      <if test="staTel != null">
-        #{staTel,jdbcType=VARCHAR},
-      </if>
-      <if test="staIntime != null">
-        #{staIntime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="staSex != null">
-        #{staSex,jdbcType=VARCHAR},
-      </if>
-      <if test="staStatus != null">
-        #{staStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="staAddress != null">
-        #{staAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="staEdu != null">
-        #{staEdu,jdbcType=VARCHAR},
-      </if>
-      <if test="staIdcard != null">
-        #{staIdcard,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.Staff">
-    update sys_staff
-    <set>
-      <if test="staName != null">
-        sta_name = #{staName,jdbcType=VARCHAR},
-      </if>
-      <if test="loginName != null">
-        login_name = #{loginName,jdbcType=VARCHAR},
-      </if>
-      <if test="staTel != null">
-        sta_tel = #{staTel,jdbcType=VARCHAR},
-      </if>
-      <if test="staIntime != null">
-        sta_intime = #{staIntime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="staSex != null">
-        sta_sex = #{staSex,jdbcType=VARCHAR},
-      </if>
-      <if test="staStatus != null">
-        sta_status = #{staStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="staAddress != null">
-        sta_address = #{staAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="staEdu != null">
-        sta_edu = #{staEdu,jdbcType=VARCHAR},
-      </if>
-      <if test="staIdcard != null">
-        sta_idcard = #{staIdcard,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where sta_id = #{staId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.model.system.Staff">
-    update sys_staff
-    set sta_name = #{staName,jdbcType=VARCHAR},
-      login_name = #{loginName,jdbcType=VARCHAR},
-      sta_tel = #{staTel,jdbcType=VARCHAR},
-      sta_intime = #{staIntime,jdbcType=TIMESTAMP},
-      sta_sex = #{staSex,jdbcType=VARCHAR},
-      sta_status = #{staStatus,jdbcType=VARCHAR},
-      sta_address = #{staAddress,jdbcType=VARCHAR},
-      sta_edu = #{staEdu,jdbcType=VARCHAR},
-      sta_idcard = #{staIdcard,jdbcType=VARCHAR}
-    where sta_id = #{staId,jdbcType=VARCHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="com.model.system.Staff">
+		<id column="sta_id" jdbcType="VARCHAR" property="staId" />
+		<result column="sta_name" jdbcType="VARCHAR" property="staName" />
+		<result column="login_name" jdbcType="VARCHAR" property="loginName" />
+		<result column="sta_tel" jdbcType="VARCHAR" property="staTel" />
+		<result column="sta_intime" jdbcType="TIMESTAMP" property="staIntime" />
+		<result column="sta_sex" jdbcType="VARCHAR" property="staSex" />
+		<result column="sta_status" jdbcType="VARCHAR" property="staStatus" />
+		<result column="sta_address" jdbcType="VARCHAR" property="staAddress" />
+		<result column="sta_edu" jdbcType="VARCHAR" property="staEdu" />
+		<result column="sta_idcard" jdbcType="VARCHAR" property="staIdcard" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sta_id, sta_name, login_name, sta_tel, sta_intime, sta_sex,
+		sta_status,
+		sta_address,
+		sta_edu, sta_idcard
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_staff
+		where sta_id = #{staId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		sys_staff
+		where sta_id = #{staId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.system.Staff">
+		insert into sys_staff (sta_id,
+		sta_name, login_name,
+		sta_tel, sta_intime, sta_sex,
+		sta_status,
+		sta_address, sta_edu,
+		sta_idcard)
+		values (#{staId,jdbcType=VARCHAR},
+		#{staName,jdbcType=VARCHAR},
+		#{loginName,jdbcType=VARCHAR},
+		#{staTel,jdbcType=VARCHAR}, #{staIntime,jdbcType=TIMESTAMP},
+		#{staSex,jdbcType=VARCHAR},
+		#{staStatus,jdbcType=VARCHAR},
+		#{staAddress,jdbcType=VARCHAR},
+		#{staEdu,jdbcType=VARCHAR},
+		#{staIdcard,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.system.Staff">
+		insert into sys_staff
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="staId != null">
+				sta_id,
+			</if>
+			<if test="staName != null">
+				sta_name,
+			</if>
+			<if test="loginName != null">
+				login_name,
+			</if>
+			<if test="staTel != null">
+				sta_tel,
+			</if>
+			<if test="staIntime != null">
+				sta_intime,
+			</if>
+			<if test="staSex != null">
+				sta_sex,
+			</if>
+			<if test="staStatus != null">
+				sta_status,
+			</if>
+			<if test="staAddress != null">
+				sta_address,
+			</if>
+			<if test="staEdu != null">
+				sta_edu,
+			</if>
+			<if test="staIdcard != null">
+				sta_idcard,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="staId != null">
+				#{staId,jdbcType=VARCHAR},
+			</if>
+			<if test="staName != null">
+				#{staName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="staTel != null">
+				#{staTel,jdbcType=VARCHAR},
+			</if>
+			<if test="staIntime != null">
+				#{staIntime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="staSex != null">
+				#{staSex,jdbcType=VARCHAR},
+			</if>
+			<if test="staStatus != null">
+				#{staStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="staAddress != null">
+				#{staAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="staEdu != null">
+				#{staEdu,jdbcType=VARCHAR},
+			</if>
+			<if test="staIdcard != null">
+				#{staIdcard,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.system.Staff">
+		update sys_staff
+		<set>
+			<if test="staName != null">
+				sta_name = #{staName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				login_name = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="staTel != null">
+				sta_tel = #{staTel,jdbcType=VARCHAR},
+			</if>
+			<if test="staIntime != null">
+				sta_intime = #{staIntime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="staSex != null">
+				sta_sex = #{staSex,jdbcType=VARCHAR},
+			</if>
+			<if test="staStatus != null">
+				sta_status = #{staStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="staAddress != null">
+				sta_address = #{staAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="staEdu != null">
+				sta_edu = #{staEdu,jdbcType=VARCHAR},
+			</if>
+			<if test="staIdcard != null">
+				sta_idcard = #{staIdcard,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where sta_id = #{staId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.system.Staff">
+		update sys_staff
+		set sta_name = #{staName,jdbcType=VARCHAR},
+		login_name =
+		#{loginName,jdbcType=VARCHAR},
+		sta_tel = #{staTel,jdbcType=VARCHAR},
+		sta_intime = #{staIntime,jdbcType=TIMESTAMP},
+		sta_sex =
+		#{staSex,jdbcType=VARCHAR},
+		sta_status = #{staStatus,jdbcType=VARCHAR},
+		sta_address = #{staAddress,jdbcType=VARCHAR},
+		sta_edu =
+		#{staEdu,jdbcType=VARCHAR},
+		sta_idcard = #{staIdcard,jdbcType=VARCHAR}
+		where sta_id = #{staId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 根据职位ID找到员工 -->
+	<select id="selectStaffsByPostId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT DISTINCT
+		sys_staff.sta_id,
+		sys_staff.sta_name,
+		sys_staff.login_name,
+		sys_staff.sta_tel,
+		sys_staff.sta_intime,
+		sys_staff.sta_sex,
+		sys_staff.sta_status,
+		sys_staff.sta_address,
+		sys_staff.sta_edu,
+		sys_staff.sta_idcard
+		FROM
+		sys_staff_post
+		INNER JOIN sys_staff ON sys_staff_post.sta_id = sys_staff.sta_id
+		WHERE post_id = #{postId,jdbcType=VARCHAR}
+		
+	</select>
+
 </mapper>

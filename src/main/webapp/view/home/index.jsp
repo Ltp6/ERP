@@ -73,7 +73,7 @@
 
                 <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>人事管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="form_layouts.html" target="right"> Form Layouts</a></li>
+                        <li><a href="view/home/structure.jsp" target="right">公司组成</a></li>
                         <li><a href="form_advanced_components.html" target="right"> Advanced Components</a></li>
                         <li><a href="form_wizard.html" target="right"> Form Wizards</a></li>
                         <li><a href="form_validation.html" target="right"> Form Validation</a></li>

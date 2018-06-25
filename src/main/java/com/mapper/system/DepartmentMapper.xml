@@ -68,4 +68,11 @@
       p_id = #{pId,jdbcType=VARCHAR}
     where dep_id = #{depId,jdbcType=VARCHAR}
   </update>
+  
+  <!--查询所有部门  -->
+   <select id="selectAllDeps" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_department
+  </select>
 </mapper>

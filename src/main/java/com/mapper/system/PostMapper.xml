@@ -1,71 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.system.PostMapper">
-  <resultMap id="BaseResultMap" type="com.model.system.Post">
-    <id column="post_id" jdbcType="VARCHAR" property="postId" />
-    <result column="post_name" jdbcType="VARCHAR" property="postName" />
-    <result column="post_level" jdbcType="VARCHAR" property="postLevel" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    post_id, post_name, post_level
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_post
-    where post_id = #{postId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_post
-    where post_id = #{postId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.model.system.Post">
-    insert into sys_post (post_id, post_name, post_level
-      )
-    values (#{postId,jdbcType=VARCHAR}, #{postName,jdbcType=VARCHAR}, #{postLevel,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.model.system.Post">
-    insert into sys_post
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="postId != null">
-        post_id,
-      </if>
-      <if test="postName != null">
-        post_name,
-      </if>
-      <if test="postLevel != null">
-        post_level,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="postId != null">
-        #{postId,jdbcType=VARCHAR},
-      </if>
-      <if test="postName != null">
-        #{postName,jdbcType=VARCHAR},
-      </if>
-      <if test="postLevel != null">
-        #{postLevel,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.Post">
-    update sys_post
-    <set>
-      <if test="postName != null">
-        post_name = #{postName,jdbcType=VARCHAR},
-      </if>
-      <if test="postLevel != null">
-        post_level = #{postLevel,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where post_id = #{postId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.model.system.Post">
-    update sys_post
-    set post_name = #{postName,jdbcType=VARCHAR},
-      post_level = #{postLevel,jdbcType=VARCHAR}
-    where post_id = #{postId,jdbcType=VARCHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="com.model.system.Post">
+		<id column="post_id" jdbcType="VARCHAR" property="postId" />
+		<result column="post_name" jdbcType="VARCHAR" property="postName" />
+		<result column="post_level" jdbcType="VARCHAR" property="postLevel" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		post_id, post_name, post_level
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_post
+		where post_id = #{postId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_post
+		where post_id = #{postId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.system.Post">
+		insert into sys_post (post_id, post_name, post_level
+		)
+		values (#{postId,jdbcType=VARCHAR}, #{postName,jdbcType=VARCHAR},
+		#{postLevel,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.system.Post">
+		insert into sys_post
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="postId != null">
+				post_id,
+			</if>
+			<if test="postName != null">
+				post_name,
+			</if>
+			<if test="postLevel != null">
+				post_level,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="postId != null">
+				#{postId,jdbcType=VARCHAR},
+			</if>
+			<if test="postName != null">
+				#{postName,jdbcType=VARCHAR},
+			</if>
+			<if test="postLevel != null">
+				#{postLevel,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.system.Post">
+		update sys_post
+		<set>
+			<if test="postName != null">
+				post_name = #{postName,jdbcType=VARCHAR},
+			</if>
+			<if test="postLevel != null">
+				post_level = #{postLevel,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where post_id = #{postId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.system.Post">
+		update sys_post
+		set post_name = #{postName,jdbcType=VARCHAR},
+		post_level = #{postLevel,jdbcType=VARCHAR}
+		where post_id = #{postId,jdbcType=VARCHAR}
+	</update>
+	<!-- yanSir -->
+	<!-- 初始化组织结构图中根据部门ID查询其拥有的所有职位 -->
+	<select id="selectAllPostsByDepId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		sys_post.post_id,
+		sys_post.post_name,
+		sys_post.post_level
+		FROM
+		sys_dep_post
+		INNER JOIN sys_post ON sys_dep_post.post_id = sys_post.post_id
+		WHERE dep_id = #{depId,jdbcType=VARCHAR}
+	</select>
 </mapper>
