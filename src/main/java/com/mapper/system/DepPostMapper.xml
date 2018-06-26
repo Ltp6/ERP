@@ -5,6 +5,11 @@
     <id column="dep_post_id" jdbcType="VARCHAR" property="depPostId" />
     <result column="post_id" jdbcType="VARCHAR" property="postId" />
     <result column="dep_id" jdbcType="VARCHAR" property="depId" />
+     <result column="dep_name" property="depName" jdbcType="VARCHAR" />
+    <result column="post_name" property="postName" jdbcType="VARCHAR" />
+     <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+      <result column="sta_name" property="staName" jdbcType="VARCHAR" />
+       <result column="sta_id" property="staId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List">
     dep_post_id, post_id, dep_id
@@ -68,4 +73,42 @@
       dep_id = #{depId,jdbcType=VARCHAR}
     where dep_post_id = #{depPostId,jdbcType=VARCHAR}
   </update>
+  
+   <select id="queryAllDep" resultMap="BaseResultMap"  >
+    select 
+    sys_department.dep_id,
+     sys_department.dep_name
+    from sys_department
+  </select>
+  
+  <select id="queryPost" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   SELECT
+sys_post.post_name,
+sys_department.dep_name,
+sys_dep_post.dep_id,
+sys_dep_post.post_id
+FROM
+sys_dep_post
+INNER JOIN sys_department ON sys_dep_post.dep_id = sys_department.dep_id
+INNER JOIN sys_post ON sys_post.post_id = sys_dep_post.post_id
+where sys_department.dep_id=#{depId,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="queryStaffInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT
+sys_staff.sta_id,
+sys_staff.login_name,
+sys_staff.sta_name,
+sys_department.dep_id,
+sys_department.dep_name,
+sys_post.post_id,
+sys_post.post_name
+FROM
+sys_staff
+INNER JOIN sys_staff_post ON sys_staff_post.sta_id = sys_staff.sta_id
+INNER JOIN sys_post ON sys_post.post_id = sys_staff_post.post_id
+INNER JOIN sys_dep_post ON sys_staff_post.post_id = sys_dep_post.post_id
+INNER JOIN sys_department ON sys_dep_post.dep_id = sys_department.dep_id
+where sys_staff.sta_id= #{staId,jdbcType=VARCHAR}
+  </select>
 </mapper>

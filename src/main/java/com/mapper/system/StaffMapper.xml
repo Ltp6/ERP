@@ -162,4 +162,7 @@
     from sys_staff
   </select>
   
+   <select id="queryAllStaff"  resultMap="BaseResultMap">
+    select * from sys_staff
+  </select>
 </mapper>

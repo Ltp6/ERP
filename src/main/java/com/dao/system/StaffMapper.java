@@ -20,4 +20,8 @@ public interface StaffMapper {
 	Staff qureyStaffByLoginName(String loginName);
 
 	List<Staff> queryStaLoginName();
+	List<Staff> queryAllStaff();
+
+	
+	
 }
