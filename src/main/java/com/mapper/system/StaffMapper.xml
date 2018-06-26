@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.system.StaffMapper">
+ <mapper namespace="com.dao.system.StaffMapper">
 	<resultMap id="BaseResultMap" type="com.model.system.Staff">
 		<id column="sta_id" jdbcType="VARCHAR" property="staId" />
 		<result column="sta_name" jdbcType="VARCHAR" property="staName" />
@@ -82,72 +82,9 @@
 				sta_idcard,
 			</if>
 		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="staId != null">
-				#{staId,jdbcType=VARCHAR},
-			</if>
-			<if test="staName != null">
-				#{staName,jdbcType=VARCHAR},
-			</if>
-			<if test="loginName != null">
-				#{loginName,jdbcType=VARCHAR},
-			</if>
-			<if test="staTel != null">
-				#{staTel,jdbcType=VARCHAR},
-			</if>
-			<if test="staIntime != null">
-				#{staIntime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="staSex != null">
-				#{staSex,jdbcType=VARCHAR},
-			</if>
-			<if test="staStatus != null">
-				#{staStatus,jdbcType=VARCHAR},
-			</if>
-			<if test="staAddress != null">
-				#{staAddress,jdbcType=VARCHAR},
-			</if>
-			<if test="staEdu != null">
-				#{staEdu,jdbcType=VARCHAR},
-			</if>
-			<if test="staIdcard != null">
-				#{staIdcard,jdbcType=VARCHAR},
-			</if>
-		</trim>
+		
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.model.system.Staff">
-		update sys_staff
-		<set>
-			<if test="staName != null">
-				sta_name = #{staName,jdbcType=VARCHAR},
-			</if>
-			<if test="loginName != null">
-				login_name = #{loginName,jdbcType=VARCHAR},
-			</if>
-			<if test="staTel != null">
-				sta_tel = #{staTel,jdbcType=VARCHAR},
-			</if>
-			<if test="staIntime != null">
-				sta_intime = #{staIntime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="staSex != null">
-				sta_sex = #{staSex,jdbcType=VARCHAR},
-			</if>
-			<if test="staStatus != null">
-				sta_status = #{staStatus,jdbcType=VARCHAR},
-			</if>
-			<if test="staAddress != null">
-				sta_address = #{staAddress,jdbcType=VARCHAR},
-			</if>
-			<if test="staEdu != null">
-				sta_edu = #{staEdu,jdbcType=VARCHAR},
-			</if>
-			<if test="staIdcard != null">
-				sta_idcard = #{staIdcard,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where sta_id = #{staId,jdbcType=VARCHAR}
-	</update>
+	
 	<update id="updateByPrimaryKey" parameterType="com.model.system.Staff">
 		update sys_staff
 		set sta_name = #{staName,jdbcType=VARCHAR},
@@ -186,4 +123,52 @@
 		
 	</select>
 
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.Staff">
+    update sys_staff
+    <set>
+      <if test="staName != null">
+        sta_name = #{staName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="staTel != null">
+        sta_tel = #{staTel,jdbcType=VARCHAR},
+      </if>
+      <if test="staIntime != null">
+        sta_intime = #{staIntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staSex != null">
+        sta_sex = #{staSex,jdbcType=VARCHAR},
+      </if>
+      <if test="staStatus != null">
+        sta_status = #{staStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="staAddress != null">
+        sta_address = #{staAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staEdu != null">
+        sta_edu = #{staEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="staIdcard != null">
+        sta_idcard = #{staIdcard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sta_id = #{staId,jdbcType=VARCHAR}
+  </update>
+  <select id="qureyStaffByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_staff
+    where  login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  <select id="queryStaLoginName" resultMap="BaseResultMap">
+    select 
+    login_name
+    from sys_staff
+  </select>
+  
+   <select id="queryAllStaff"  resultMap="BaseResultMap">
+    select * from sys_staff
+  </select>
 </mapper>

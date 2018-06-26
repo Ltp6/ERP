@@ -31,15 +31,15 @@
 	</listener> 
 	<!-- end IOC -->
 	<!-- 项目初始化操作监听器 -->
-	<!--  <listener>
-		<listener-class>kohgylw.erpsystem1803.listener.InitListener</listener-class>
-	</listener> -->
+	<listener>
+		<listener-class>com.listener.InitListener</listener-class>
+	</listener>
 	<!-- end 初始化 -->
 	
 	<!-- 记录在线人数的监听器 -->
-	<!-- <listener>
-		<listener-class>kohgylw.erpsystem1803.listener.VisitorCountLintener</listener-class>
-	</listener> -->
+	<listener>
+		<listener-class>com.listener.VisitorCountListener</listener-class>
+	</listener>
 	<!-- end 在线人数 -->
 
 	<!-- 判断用户身份合法性的过滤器 -->

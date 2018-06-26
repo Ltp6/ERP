@@ -1,71 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.system.OneMenuMapper">
-  <resultMap id="BaseResultMap" type="com.model.system.OneMenu">
-    <id column="one_menu_id" jdbcType="VARCHAR" property="oneMenuId" />
-    <result column="one_menu_name" jdbcType="VARCHAR" property="oneMenuName" />
-    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    one_menu_id, one_menu_name, menu_icon
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_one_menu
-    where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_one_menu
-    where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.model.system.OneMenu">
-    insert into sys_one_menu (one_menu_id, one_menu_name, menu_icon
-      )
-    values (#{oneMenuId,jdbcType=VARCHAR}, #{oneMenuName,jdbcType=VARCHAR}, #{menuIcon,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.model.system.OneMenu">
-    insert into sys_one_menu
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="oneMenuId != null">
-        one_menu_id,
-      </if>
-      <if test="oneMenuName != null">
-        one_menu_name,
-      </if>
-      <if test="menuIcon != null">
-        menu_icon,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="oneMenuId != null">
-        #{oneMenuId,jdbcType=VARCHAR},
-      </if>
-      <if test="oneMenuName != null">
-        #{oneMenuName,jdbcType=VARCHAR},
-      </if>
-      <if test="menuIcon != null">
-        #{menuIcon,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.model.system.OneMenu">
-    update sys_one_menu
-    <set>
-      <if test="oneMenuName != null">
-        one_menu_name = #{oneMenuName,jdbcType=VARCHAR},
-      </if>
-      <if test="menuIcon != null">
-        menu_icon = #{menuIcon,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.model.system.OneMenu">
-    update sys_one_menu
-    set one_menu_name = #{oneMenuName,jdbcType=VARCHAR},
-      menu_icon = #{menuIcon,jdbcType=VARCHAR}
-    where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="com.model.system.OneMenu">
+		<id column="one_menu_id" jdbcType="VARCHAR" property="oneMenuId" />
+		<result column="one_menu_name" jdbcType="VARCHAR" property="oneMenuName" />
+		<result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		one_menu_id, one_menu_name, menu_icon
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_one_menu
+		where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		sys_one_menu
+		where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.system.OneMenu">
+		insert into sys_one_menu
+		(one_menu_id, one_menu_name, menu_icon
+		)
+		values
+		(#{oneMenuId,jdbcType=VARCHAR}, #{oneMenuName,jdbcType=VARCHAR},
+		#{menuIcon,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.model.system.OneMenu">
+		insert into sys_one_menu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="oneMenuId != null">
+				one_menu_id,
+			</if>
+			<if test="oneMenuName != null">
+				one_menu_name,
+			</if>
+			<if test="menuIcon != null">
+				menu_icon,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="oneMenuId != null">
+				#{oneMenuId,jdbcType=VARCHAR},
+			</if>
+			<if test="oneMenuName != null">
+				#{oneMenuName,jdbcType=VARCHAR},
+			</if>
+			<if test="menuIcon != null">
+				#{menuIcon,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.model.system.OneMenu">
+		update sys_one_menu
+		<set>
+			<if test="oneMenuName != null">
+				one_menu_name = #{oneMenuName,jdbcType=VARCHAR},
+			</if>
+			<if test="menuIcon != null">
+				menu_icon = #{menuIcon,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.model.system.OneMenu">
+		update sys_one_menu
+		set one_menu_name =
+		#{oneMenuName,jdbcType=VARCHAR},
+		menu_icon =
+		#{menuIcon,jdbcType=VARCHAR}
+		where one_menu_id =
+		#{oneMenuId,jdbcType=VARCHAR}
+	</update>
+	<select id="queryAllOneMenu" resultMap="BaseResultMap">
+		select
+		*
+		from sys_one_menu
+	</select>
+	<select id="queryOneMenuByLoginName" resultMap="BaseResultMap">
+		SELECT
+		sys_one_menu.one_menu_name,
+		sys_one_menu.menu_icon,
+		sys_one_menu.one_menu_id
+		FROM
+		sys_post_menu
+		INNER JOIN sys_one_menu ON sys_post_menu.one_menu_id =
+		sys_one_menu.one_menu_id
+		where post_id=#{loginName,jdbcType=VARCHAR}
+	</select>
+
+
+
 </mapper>

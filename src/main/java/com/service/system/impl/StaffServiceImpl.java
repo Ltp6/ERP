@@ -11,23 +11,34 @@ import com.google.gson.Gson;
 import com.model.system.Staff;
 import com.service.system.StaffService;
 
-@Service
-public class StaffServiceImpl implements StaffService {
-	
-	@Resource
-	private StaffMapper staffMapper;
-	
+import java.util.List;
 
-	/**
-	 *通过指定ID得到对应的员工对象
-	 */
-	@Override
-	public String selectStaffById(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		String staffId=request.getParameter("staffId");
-		Staff staff=staffMapper.selectByPrimaryKey(staffId);
-		Gson gson=new Gson();
-		return gson.toJson(staff);
-	}
+@Service
+public class StaffServiceImpl implements StaffService{
+@Resource
+private StaffMapper staffMapper;
 	
+@Override
+	public List<Staff> queryAllStaff() {
+	List<Staff> list=staffMapper.queryAllStaff();
+	System.out.println(list.toString());
+		// TODO Auto-generated method stub
+		return staffMapper.queryAllStaff();
+	}
+
+@Override
+public Staff queryStaff(String staId) {
+	// TODO Auto-generated method stub
+	return staffMapper.selectByPrimaryKey(staId);
+}
+
+@Override
+public String selectStaffById(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	String staffId=request.getParameter("staffId");
+	Staff staff=staffMapper.selectByPrimaryKey(staffId);
+	Gson gson=new Gson();
+	return gson.toJson(staff);
+}
+
 }

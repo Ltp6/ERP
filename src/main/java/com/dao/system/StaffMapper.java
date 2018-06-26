@@ -18,4 +18,11 @@ public interface StaffMapper {
     int updateByPrimaryKey(Staff record);
 
 	List<Staff> selectStaffsByPostId(String postId);
+	Staff qureyStaffByLoginName(String loginName);
+
+	List<Staff> queryStaLoginName();
+	List<Staff> queryAllStaff();
+
+	
+	
 }

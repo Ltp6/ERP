@@ -34,37 +34,37 @@
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table> -->
 			
-			<table tableName="sys_dep_post" domainObjectName="DepPost"
+<!-- 			<table tableName="sys_dep_post" domainObjectName="DepPost"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+			selectByExampleQueryId="false"></table> -->
 			
-			<table tableName="sys_department" domainObjectName="Department"
+<!-- 			<table tableName="sys_department" domainObjectName="Department"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+			selectByExampleQueryId="false"></table> -->
 			
-			<table tableName="sys_one_menu" domainObjectName="OneMenu"
+<!-- 			<table tableName="sys_one_menu" domainObjectName="OneMenu"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+			selectByExampleQueryId="false"></table> -->
 			
-			<table tableName="sys_one_menu_correlation" domainObjectName="OneMenuCorrelation"
+<!-- 			<table tableName="sys_menu_correlation" domainObjectName="MenuCorrelation"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
-			
+			selectByExampleQueryId="false"></table> -->
+<!-- 			
 			<table tableName="sys_post" domainObjectName="Post"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+			selectByExampleQueryId="false"></table> -->
 			
 			<table tableName="sys_post_menu" domainObjectName="PostMenu"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+			selectByExampleQueryId="false"></table> 
 			
-			<table tableName="sys_sta_dep" domainObjectName="StaDep"
+<!-- 			<table tableName="sys_sta_dep" domainObjectName="StaDep"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
@@ -78,11 +78,11 @@
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-			
-			<table tableName="sys_two_menu" domainObjectName="TwoMenu"
+			 -->
+<!-- 			<table tableName="sys_two_menu" domainObjectName="TwoMenu"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+			selectByExampleQueryId="false"></table> -->
 			
 			
 

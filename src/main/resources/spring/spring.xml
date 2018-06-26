@@ -30,12 +30,10 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/erp?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true" />
- -->		
-		<property name="url" value="jdbc:mysql://localhost/erp?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true" />
-		
+	 	<!-- <property name="url" value="jdbc:mysql://localhost:3306/erp?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true" /> --> 
+		<property name="url" value="jdbc:mysql://192.168.3.132:3306/erp?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true" /> 
 		<property name="username" value="root" />
-		<property name="password" value="123" />
+		<property name="password" value="123456" />
 	</bean>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

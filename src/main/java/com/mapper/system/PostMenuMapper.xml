@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.model.system.PostMenu">
     <id column="post_menu_id" jdbcType="VARCHAR" property="postMenuId" />
     <result column="post_id" jdbcType="VARCHAR" property="postId" />
-    <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
+    <result column="one_menu_id" jdbcType="VARCHAR" property="oneMenuId" />
   </resultMap>
   <sql id="Base_Column_List">
-    post_menu_id, post_id, menu_id
+    post_menu_id, post_id, one_menu_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -20,9 +20,9 @@
     where post_menu_id = #{postMenuId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.model.system.PostMenu">
-    insert into sys_post_menu (post_menu_id, post_id, menu_id
+    insert into sys_post_menu (post_menu_id, post_id, one_menu_id
       )
-    values (#{postMenuId,jdbcType=VARCHAR}, #{postId,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}
+    values (#{postMenuId,jdbcType=VARCHAR}, #{postId,jdbcType=VARCHAR}, #{oneMenuId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.model.system.PostMenu">
@@ -34,8 +34,8 @@
       <if test="postId != null">
         post_id,
       </if>
-      <if test="menuId != null">
-        menu_id,
+      <if test="oneMenuId != null">
+        one_menu_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -45,8 +45,8 @@
       <if test="postId != null">
         #{postId,jdbcType=VARCHAR},
       </if>
-      <if test="menuId != null">
-        #{menuId,jdbcType=VARCHAR},
+      <if test="oneMenuId != null">
+        #{oneMenuId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -56,8 +56,8 @@
       <if test="postId != null">
         post_id = #{postId,jdbcType=VARCHAR},
       </if>
-      <if test="menuId != null">
-        menu_id = #{menuId,jdbcType=VARCHAR},
+      <if test="oneMenuId != null">
+        one_menu_id = #{oneMenuId,jdbcType=VARCHAR},
       </if>
     </set>
     where post_menu_id = #{postMenuId,jdbcType=VARCHAR}
@@ -65,7 +65,7 @@
   <update id="updateByPrimaryKey" parameterType="com.model.system.PostMenu">
     update sys_post_menu
     set post_id = #{postId,jdbcType=VARCHAR},
-      menu_id = #{menuId,jdbcType=VARCHAR}
+      one_menu_id = #{oneMenuId,jdbcType=VARCHAR}
     where post_menu_id = #{postMenuId,jdbcType=VARCHAR}
   </update>
 </mapper>

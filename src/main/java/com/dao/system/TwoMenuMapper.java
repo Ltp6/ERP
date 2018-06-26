@@ -1,5 +1,7 @@
 package com.dao.system;
 
+import java.util.List;
+
 import com.model.system.TwoMenu;
 
 public interface TwoMenuMapper {
@@ -14,4 +16,6 @@ public interface TwoMenuMapper {
     int updateByPrimaryKeySelective(TwoMenu record);
 
     int updateByPrimaryKey(TwoMenu record);
+
+	List<TwoMenu> queryTowMenuByLoginNameAndOneMenuId(String loginName, String oneMenuId);
 }

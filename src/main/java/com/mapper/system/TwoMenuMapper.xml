@@ -68,4 +68,19 @@
       two_menu_url = #{twoMenuUrl,jdbcType=VARCHAR}
     where two_menu_id = #{twoMenuId,jdbcType=VARCHAR}
   </update>
+   <select id="queryTowMenuByLoginNameAndOneMenuId"  resultMap="BaseResultMap">
+	 SELECT
+		sys_two_menu.two_menu_id,
+		sys_two_menu.two_menu_name,
+		sys_two_menu.two_menu_url
+		FROM
+		sys_post_menu
+		INNER JOIN sys_one_menu ON sys_post_menu.one_menu_id = sys_one_menu.one_menu_id
+		INNER JOIN sys_menu_correlation ON sys_one_menu.one_menu_id = sys_menu_correlation.one_menu_id
+		INNER JOIN sys_two_menu ON sys_menu_correlation.two_menu_id = sys_two_menu.two_menu_id
+		WHERE post_id=#{0} AND sys_menu_correlation.one_menu_id = #{1}
+  </select>
+  
+  
+  
 </mapper>

@@ -1,11 +1,11 @@
 package com.model.system;
 
-public class OneMenuCorrelation {
+public class MenuCorrelation {
     private String menuCorId;
 
     private String oneMenuId;
 
-    private String menuId;
+    private String twoMenuId;
 
     public String getMenuCorId() {
         return menuCorId;
@@ -23,11 +23,11 @@ public class OneMenuCorrelation {
         this.oneMenuId = oneMenuId;
     }
 
-    public String getMenuId() {
-        return menuId;
+    public String getTwoMenuId() {
+        return twoMenuId;
     }
 
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
+    public void setTwoMenuId(String twoMenuId) {
+        this.twoMenuId = twoMenuId;
     }
 }

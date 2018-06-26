@@ -23,7 +23,7 @@
  
 </head>
 
-<body class="sticky-header" style="overflow:-Scroll;overflow-y:hidden">
+<body class="sticky-header" style="overflow:-Scroll;overflow-y:hidden;">
 
 <section>
     <!-- left side start-->
@@ -46,7 +46,7 @@
                 <div class="media logged-user">
                     <img alt="" src="images/photos/user-avatar.png" class="media-object">
                     <div class="media-body">
-                        <h4><a href="#">admin</a></h4>
+                        <h4><a href="#" class="name"></a></h4>
                         <span>"还没有想好..."</span>
                     </div>
                 </div>
@@ -61,13 +61,13 @@
 
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>系统管理</span></a>
+               
+               <c:forEach items="${menuList}" var="menuList">
+                	<li class="menu-list"><a href=""><i class="fa ${menuList.oneMenu.menuIcon }"></i> <span>${menuList.oneMenu.oneMenuName}</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="grids.html" target="right"> Grids</a></li>
-                        <li><a href="gallery.html" target="right"> Media Gallery</a></li>
-                        <li><a href="calendar.html" target="right"> Calendar</a></li>
-                        <li><a href="tree_view.html" target="right"> Tree View</a></li>
-                        <li><a href="nestable.html" target="right"> Nestable</a></li>
+                    <c:forEach items="${menuList.twoMenuList}" var="twoMenu"> 
+                        <li><a href="${twoMenu.twoMenuUrl}" target="right"> ${twoMenu.twoMenuName}</a></li>
+                    </c:forEach> 
                     </ul>
                 </li>
 
@@ -85,6 +85,7 @@
                     </ul>
                 </li>
 
+			</c:forEach>
             </ul>
             <!--sidebar nav end-->
 
@@ -125,9 +126,7 @@
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="images/photos/user-avatar.png" alt="" />
-                            admin
-                            <span class="caret"></span>
+                            <img src="images/photos/user-avatar.png" alt="" /><span class="name"></span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>  个人简介</a></li>
@@ -143,10 +142,7 @@
         <!-- header section end-->
         
         <!-- page heading end-->
-      <iframe src="view/home/info.jsp" scrolling="yes" frameborder="0" name="right"></iframe>
-		    <!--<div class="admin">
-				  <iframe scrolling="auto" rameborder="0" src="test.html" name="right" width="100%" height="100%"></iframe>
-				</div>-->
+      <iframe id="iframe" src="" scrolling="yes" frameborder="0" name="right" ></iframe>
         	
         
         
@@ -165,6 +161,40 @@
 
 <!--common scripts for all pages-->
 <script src="js/scripts.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	$.ajax({
+		url:'indexController/getStaName.ajax',
+		type:'POST',
+		data:{
+			
+		},
+		dataType:'text',
+		success:function(result){
+			if(result !=null&&result !="FAIL"){
+				$(".name").text(result);
+				if(result=="admin"){
+					$("#iframe").attr("src","view/home/admin-info.jsp")
+				}else{
+					$("#iframe").attr("src","view/home/info.jsp")
+				}
+			}else{
+				$(".name").text("正在获取。。。");
+			}
+		},
+		error:function(){
+			$(".name").text("无法获取");
+		}
+	});
+}); 
+
+
+
+
+</script>
+
 
 </body>
 </html>

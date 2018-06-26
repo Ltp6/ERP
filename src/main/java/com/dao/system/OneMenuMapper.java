@@ -1,5 +1,7 @@
 package com.dao.system;
 
+import java.util.List;
+
 import com.model.system.OneMenu;
 
 public interface OneMenuMapper {
@@ -14,4 +16,9 @@ public interface OneMenuMapper {
     int updateByPrimaryKeySelective(OneMenu record);
 
     int updateByPrimaryKey(OneMenu record);
+
+	List<OneMenu> queryAllOneMenu();
+
+	List<OneMenu> queryOneMenuByLoginName(String loginName);
+
 }
