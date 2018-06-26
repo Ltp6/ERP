@@ -70,21 +70,6 @@
                     </c:forEach> 
                     </ul>
                 </li>
-
-                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>人事管理</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="view/home/structure.jsp" target="right">公司组成</a></li>
-                        <li><a href="form_advanced_components.html" target="right"> Advanced Components</a></li>
-                        <li><a href="form_wizard.html" target="right"> Form Wizards</a></li>
-                        <li><a href="form_validation.html" target="right"> Form Validation</a></li>
-                        <li><a href="editors.html" target="right"> Editors</a></li>
-                        <li><a href="inline_editors.html" target="right"> Inline Editors</a></li>
-                        <li><a href="pickers.html" target="right">  Pickers</a></li>
-                        <li><a href="dropzone.html" target="right"> Dropzone</a></li>
-                        <li><a href="http://www.weidea.net" target="right"> More</a></li>
-                    </ul>
-                </li>
-
 			</c:forEach>
             </ul>
             <!--sidebar nav end-->

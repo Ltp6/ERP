@@ -45,6 +45,7 @@ public class LoginFilter implements Filter {
 				User user = userMapper.queryUserByLoginName(loginName);
 				if (user != null) {
 					if (user.getUserStatus().equalsIgnoreCase("on")) {
+						
 						chain.doFilter(request, response);// 放行
 					} else {
 						httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
